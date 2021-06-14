@@ -18,7 +18,15 @@ public class Problem1 {
         List<Integer> integerList = new ArrayList<>();
         for (int i = 0; i < arraySize; i++) integerList.add(scan.nextInt());
 
-        Collections.swap(integerList, 0, arraySize - 1);
+        int lastElement = integerList.get(arraySize - 1);
+
+        for (int i = arraySize - 1; i > 0; i--) {
+            int temp = integerList.get(i);
+            integerList.set(i, integerList.get(i - 1));
+            integerList.set(i - 1, temp);
+        }
+
+        integerList.set(0, lastElement);
         System.out.println(integerList);
     }
 }
