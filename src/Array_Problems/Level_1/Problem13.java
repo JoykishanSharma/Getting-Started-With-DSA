@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class Problem13 {
     static int pos = 0;
+    static boolean sumFound = false;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int[] intArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -22,16 +24,21 @@ public class Problem13 {
             if (i == pos) {
                 continue;
             }
-
             int curSum = intArray[i] + intArray[pos];
             if (curSum == sum) {
+                System.out.println(sumFound);
                 System.out.println("Sum pair found. They are at index " + i + " and " + pos);
+                sumFound = true;
                 pos = -1;
                 break;
             }
         }
 
-        if (pos != -1) {
+        if (!sumFound && pos == intArray.length - 1) {
+            System.out.println(false);
+        }
+
+        if (pos != -1 && !sumFound && pos < intArray.length - 1) {
             pos++;
             findSumWithRecursion(intArray, sum);
         }
